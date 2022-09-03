@@ -1,7 +1,7 @@
 from random import randint
 
 
-class Dot:  # Точка
+class Dot:
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -13,7 +13,7 @@ class Dot:  # Точка
         return "(" + str(self.x) + " , " + str(self.y) + ")"
 
 
-class Ship:  # Кораблик
+class Ship:
     def __init__(self, bow, l, o):
         self.bow = bow
         self.l = l
