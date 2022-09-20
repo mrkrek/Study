@@ -1,0 +1,12 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Политика
+{% endblock title %}
+
+<p>{% block content %}</p>
+<h1 style="text-align: center;"><strong>Россия и Китай</strong></h1>
+<p style="text-align: right;">Дата публикации</p>
+<p style="text-align: right;">{{ time_now | date:'d M Y' }}</p>
+<h1 style="text-align: center;">{{ text }}</h1>
+<p>{% endblock content %}</p>

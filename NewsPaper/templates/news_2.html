@@ -1,0 +1,21 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+Музыка
+{% endblock title %}
+
+<p>{% block content %}</p>
+{% if id_news_2 %}
+<h2 style="text-align: center;">{{ id_news_2.title }}</h2>
+<p>&nbsp;</p>
+<hr />
+<h1 style="text-align: center;">Содержание:</h1>
+<h3 style="text-align: center;">{{ id_news_2.text | censor }}</h3>
+<h3 style="text-align: right;">Дата публикации:</h3>
+<h3 style="text-align: right;">{{ id_news_2.time_now | date:'d M Y' }}</h3>
+{% else %}
+<h2>Статей и новостей нет!</h2>
+{% endif %}
+<p>{% endblock content %}</p>
