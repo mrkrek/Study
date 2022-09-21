@@ -50,6 +50,7 @@ class Post(models.Model):
     def __str__(self):
         return f'{self.news.title()}: {self.title[:20]}'
 
+
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)

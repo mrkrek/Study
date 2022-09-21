@@ -4,6 +4,10 @@
 {% endblock title %}
 {% block content %}
 <h1>Все новости</h1>
+<form action="" method="get">
+    {{ filterset.form.as_p }}
+    <input type="submit" value="Найти" />
+</form>
 <p>{% if id %}</p>
 {% for post in id %}
 <table style="width: 907px;">
@@ -15,7 +19,7 @@
 <td style="width: 458px; height: 18px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong>Содержание</strong></td>
 </tr>
 <tr style="height: 57.6406px;">
-<td style="width: 154.281px; height: 57.6406px;">&nbsp; &nbsp; {{ post.title }}</td>
+<td style="width: 154.281px; height: 57.6406px;">&nbsp; &nbsp; {{ post.title | truncatechars:15 }}</td>
 <td style="width: 10px; height: 57.6406px;">&nbsp;</td>
 <td style="width: 256px; height: 57.6406px;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{{ time_now | date:'d M Y' }}</td>
 <td style="width: 10px; height: 57.6406px;">&nbsp;</td>
@@ -25,4 +29,22 @@
 </table>
 <p>{% else %}</p>
 <h2>Новостей нет!</h2>
-<p>{% endif %} {% endblock content %}
+<p>{% endif %}
+   {% if page_obj.has_previous %}
+       <a href="?page=1">1</a>
+       {% if page_obj.previous_page_number != 1 %}
+           ...
+           <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+       {% endif %}
+   {% endif %}
+
+   {{ page_obj.number }}
+
+   {% if page_obj.has_next %}
+       <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+       {% if paginator.num_pages != page_obj.next_page_number %}
+           ...
+           <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+       {% endif %}
+   {% endif %}
+<p>{% endblock content %}
